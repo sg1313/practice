@@ -3,6 +3,12 @@ const toDoInput = toDoForm.querySelector("input"); // index.html에서 todo-form
 // document.querySelector('#todo-form input')과 같다.!! id가 todo-form인 form 안에서 input을 찾는다.
 const toDoList = document.getElementById("todo-list");
 
+const toDos = [];
+
+function saveTodos() {
+  localStorage.setItem("todos", toDos); // toDos의 배열을 로컬스토리지에 넣음
+}
+
 function deleteTodo(e) {
   const li = e.target.parentElement;
   li.remove();
@@ -29,6 +35,7 @@ function handleTodoSubmit(e) {
   // console.log(toDoInput.value);
   toDoInput.value = "";
   // console.log(newTodo, toDoInput.value);
+  toDos.push(newTodo);
   paintToDo(newTodo); //newTodo 호출
 }
 
